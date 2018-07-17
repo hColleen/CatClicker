@@ -1,0 +1,9 @@
+.flex-container {
+	display: flex;
+	justify-content: center;
+	margin: 10px;
+}
+
+img {
+	padding: 20px;
+}
