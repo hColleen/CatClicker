@@ -1,24 +1,28 @@
-document.addEventListener("DOMContentLoaded", function(){
-
-	var Cat = function(number, name, count, image){
-		this.number = number;
+	var Cat = function(num, name, image){
+		this.num = num;
 		this.name = name;
-		this.count = count;
 		this.image = image;
-		this.text = `<div id = 'cat${this.number}'><h2>This is ${this.name}</h2><img src = ${this.image}><p>You have clicked ${this.count} times so far.</p></div>`;
+		this.count = 0;
 	};
 	
-	Cat.prototype.click = function(){
-		this.image.addEventListener('click', function(){
-			this.count +=1;
-		});
-	};
-	
-	let catOne = new Cat ("One", "Kagami", 0, "images/kagami.jpg"),
-		catTwo = new Cat ("Two", "Makai Neko", 0, "images/makai-neko.jpg");
+	let catOne = new Cat ("One", "Kagami", "images/kagami.jpg");
+		catTwo = new Cat ("Two", "Makai Neko", "images/makai-neko.jpg");
 		
 	let row = document.getElementById('catHolder');
 	
-	row.innerHTML = catOne.text + catTwo.text;
-
-});
+	row.innerHTML = `<div id = 'catOne'><h2>This is ${catOne.name}</h2><img src = '${catOne.image}'><p>You have clicked <span id = '${catOne.num}'>${catOne.count}</span> times so far.</p></div><div id = 'catTwo'><h2>This is ${catTwo.name}</h2><img src = '${catTwo.image}'><p>You have clicked <span id = '${catTwo.num}'>${catTwo.count}</span> times so far.</p></div>`;
+	
+	let clickOne = document.getElementById('catOne'),
+		clickTwo = document.getElementById('catTwo'),
+		counterOne = document.getElementById('One'),
+		counterTwo = document.getElementById('Two');
+	
+	clickOne.addEventListener('click', function(){
+		catOne.count += 1;
+		counterOne.innerHTML = `${catOne.count}`;
+	});
+	
+	clickTwo.addEventListener('click', function(){
+		catTwo.count += 1;
+		counterTwo.innerHTML = `${catTwo.count}`;
+	});
