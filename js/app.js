@@ -1,28 +1,39 @@
-	var Cat = function(num, name, image){
+
+	let catArray = [{name: "Kagami", image: "images/kagami.jpg"}, {name: "Makai Neko", image: "images/makai-neko.jpg"}, {name: "Belly Rubb", image: "images/belly.jpg"}, {name: "Bleper", image: "images/blep.jpg"}, {name: "Boss Cat",  image: "images/boss.jpg"}, {name: "Gardener", image: "images/garden.jpg"}, {name: "Hostess", image: "images/greeting.jpg"}, {name: "Fascinator", image: "images/hat.jpg"}, {name: "Helper", image: "images/helping.jpg"}, {name: "Cyborg", image: "images/laser-eye.jpg"}, {name: "Gravity Assist", image: "images/papasan.jpg"}, {name: "Super Spy", image: "images/spying.jpg"}];
+
+	let Cat = function(num, name, image){
 		this.num = num;
 		this.name = name;
 		this.image = image;
 		this.count = 0;
+		this.text = `You have clicked ${this.name} ${this.count} times!`;
 	};
 	
-	let catOne = new Cat ("One", "Kagami", "images/kagami.jpg");
-		catTwo = new Cat ("Two", "Makai Neko", "images/makai-neko.jpg");
+	function getRandomCat(arr){
+		return arr[Math.floor(Math.random() * arr.length)];
+	}
+	
+	let catsDisplay = [];
+	
+	function createCat (){
+		for (let i = 0; i < 5; i ++){
+			let cat = getRandomCat(catArray);
+			num = i;
+			name = cat.name;
+			image = cat.image;
+			cat = new Cat (num, name, image);
+			catsDisplay.push(cat);
+		}
+	}
+	
+	createCat();
+	
+	let startButton = document.getElementById('gameStart'),
+		startText = document.getElementById('startText'),
+		row = document.getElementById('catHolder');
+	
+	startButton.addEventListener('click', function(){
+		startButton.classList.add('hidden');
+		startText.classList.add('hidden');
 		
-	let row = document.getElementById('catHolder');
-	
-	row.innerHTML = `<div id = 'catOne'><h2>This is ${catOne.name}</h2><img src = '${catOne.image}'><p>You have clicked <span id = '${catOne.num}'>${catOne.count}</span> times so far.</p></div><div id = 'catTwo'><h2>This is ${catTwo.name}</h2><img src = '${catTwo.image}'><p>You have clicked <span id = '${catTwo.num}'>${catTwo.count}</span> times so far.</p></div>`;
-	
-	let clickOne = document.getElementById('catOne'),
-		clickTwo = document.getElementById('catTwo'),
-		counterOne = document.getElementById('One'),
-		counterTwo = document.getElementById('Two');
-	
-	clickOne.addEventListener('click', function(){
-		catOne.count += 1;
-		counterOne.innerHTML = `${catOne.count}`;
-	});
-	
-	clickTwo.addEventListener('click', function(){
-		catTwo.count += 1;
-		counterTwo.innerHTML = `${catTwo.count}`;
 	});

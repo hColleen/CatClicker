@@ -1,6 +1,10 @@
-.flex-container {
+body {
+	text-align: center;
+}
+
+container {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	margin: 10px;
 }
 
@@ -10,5 +14,17 @@ img {
 
 header {
 	font-size: 3em;
-	text-align: center;
+}
+
+button {
+	align-self: center;
+	width: 250px;
+	height: 100px;
+	background-color: green;
+	color: white;
+	font-size: 2em;
+}
+
+.hidden {
+	display: none;
 }
