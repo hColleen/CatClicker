@@ -6,7 +6,7 @@
 		this.name = name;
 		this.image = image;
 		this.count = 0;
-		this.text = `You have clicked ${this.name} ${this.count} times!`;
+		this.text = `You have clicked ${this.name}<br />${this.count} times!`;
 	};
 	
 	function getRandomCat(arr){
@@ -30,10 +30,22 @@
 	
 	let startButton = document.getElementById('gameStart'),
 		startText = document.getElementById('startText'),
-		row = document.getElementById('catHolder');
+		row = document.getElementById('catHolder'),
+		cat,
+		catsHTML=[];
+		
+	for (var i = 0; i < catsDisplay.length; i ++){
+		cat = catsDisplay[i];
+		let catInfo = `<div class = 'clickCat'><h3>${cat.name}</h3><img src = ${cat.image} /> <p>${cat.text}</div>`;
+		//add event listener
+		catsHTML.push(catInfo);
+	}
+
+	row.innerHTML = catsHTML.join(" ");
 	
 	startButton.addEventListener('click', function(){
 		startButton.classList.add('hidden');
 		startText.classList.add('hidden');
-		
+		row.classList.remove('hidden');
+		row.classList.add('show');
 	});
