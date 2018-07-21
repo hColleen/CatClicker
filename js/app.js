@@ -37,9 +37,16 @@
 	for (var i = 0; i < catsDisplay.length; i ++){
 		cat = catsDisplay[i];
 		let catInfo = `<div class = 'clickCat'><h3>${cat.name}</h3><img src = ${cat.image} /> <p>${cat.text}</div>`;
-		//add event listener
 		catsHTML.push(catInfo);
 	}
+	
+	let pics = document.querySelectorAll('.clickCat');
+	
+	pics.forEach(function(pic){
+		pic.addEventListener('click', function(e){
+			count += 1;
+		});
+	});
 
 	row.innerHTML = catsHTML.join(" ");
 	
@@ -49,3 +56,7 @@
 		row.classList.remove('hidden');
 		row.classList.add('show');
 	});
+	
+	
+	
+	
