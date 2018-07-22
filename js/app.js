@@ -5,15 +5,16 @@
 		this.num = num;
 		this.name = name;
 		this.image = image;
-		this.count = 0;
-		this.text = `You have clicked ${this.name}<br />${this.count} times!`;
 	};
 	
 	function getRandomCat(arr){
 		return arr[Math.floor(Math.random() * arr.length)];
 	}
 	
-	let catsDisplay = [];
+	let catsDisplay = [],
+		row = document.getElementById('catHolder'),
+		cat,
+		catsHTML=[];
 	
 	function createCat (){
 		for (let i = 0; i < 5; i ++){
@@ -28,27 +29,31 @@
 	
 	createCat();
 	
-	let startButton = document.getElementById('gameStart'),
-		startText = document.getElementById('startText'),
-		row = document.getElementById('catHolder'),
-		cat,
-		catsHTML=[];
-		
 	for (var i = 0; i < catsDisplay.length; i ++){
 		cat = catsDisplay[i];
-		let catInfo = `<div class = 'clickCat'><h3>${cat.name}</h3><img src = ${cat.image} /> <p>${cat.text}</div>`;
+		let catInfo = `<div class = 'clickCat'><h3>${cat.name}</h3><img src = ${cat.image} /><p class = "clickText">0 clicks</p></div>`;
 		catsHTML.push(catInfo);
 	}
 	
-	let pics = document.querySelectorAll('.clickCat');
+	row.innerHTML = catsHTML.join(" ");
 	
+	//TODO: loop
+	
+	let pics = document.querySelectorAll('.clickCat');
 	pics.forEach(function(pic){
+		let count = 0;
+			let catText = document.querySelector('.clickText');
+			let clickText = document.createElement('div');
+			clickText.text = count + " clicks";
 		pic.addEventListener('click', function(e){
 			count += 1;
+			//catText.classList.add('hidden');
+			console.log(clickText);
 		});
 	});
 
-	row.innerHTML = catsHTML.join(" ");
+	let startButton = document.getElementById('gameStart'),
+		startText = document.getElementById('startText');
 	
 	startButton.addEventListener('click', function(){
 		startButton.classList.add('hidden');
