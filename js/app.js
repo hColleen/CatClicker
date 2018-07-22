@@ -31,26 +31,28 @@
 	
 	for (var i = 0; i < catsDisplay.length; i ++){
 		cat = catsDisplay[i];
-		let catInfo = `<div class = 'clickCat'><h3>${cat.name}</h3><img src = ${cat.image} /><p class = "clickText">0 clicks</p></div>`;
+		let catInfo = `<div class = 'clickCat'><h3>${cat.name}</h3><img src = ${cat.image} id = "clickHere" /><p class = "holderText">0 clicks</p></div>`;
 		catsHTML.push(catInfo);
 	}
 	
 	row.innerHTML = catsHTML.join(" ");
 	
-	//TODO: loop
-	
-	let pics = document.querySelectorAll('.clickCat');
-	pics.forEach(function(pic){
-		let count = 0;
-			let catText = document.querySelector('.clickText');
-			let clickText = document.createElement('div');
-			clickText.text = count + " clicks";
+	for (let i = 0; i < catsHTML.length; i ++){
+		let pics = row.getElementsByTagName("img"),
+			pic = pics[i],
+			clickCat = document.getElementsByClassName('clickCat'),
+			countText = clickCat[i],
+			catText = document.createElement('p'),
+			holderText = document.getElementsByClassName('holderText'),
+			tempText = holderText[i],
+			count = 0;
+		countText.appendChild(catText);
 		pic.addEventListener('click', function(e){
 			count += 1;
-			//catText.classList.add('hidden');
-			console.log(clickText);
+			tempText.classList.add('hidden');
+			catText.textContent = count + " clicks";
 		});
-	});
+	};
 
 	let startButton = document.getElementById('gameStart'),
 		startText = document.getElementById('startText');
@@ -61,7 +63,4 @@
 		row.classList.remove('hidden');
 		row.classList.add('show');
 	});
-	
-	
-	
 	
