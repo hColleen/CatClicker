@@ -82,6 +82,13 @@ for (let i = 0; i < catsDisplay.length; i++) {
     catsName.push(catNameHTML);
 }
 
+//VIEW		
+
+let catListHolder = document.getElementById('catList');
+catListHolder.innerHTML = catsName.join(" ");
+
+let box = document.getElementById('catHolder');
+
 //OCTOPUS
 
 //add event listener to images and update number of clicks	
@@ -104,10 +111,3 @@ for (let i = 0; i < catsDisplay.length; i++) {
 */
 
 //add click listener to cat names to display one cat and count
-
-//VIEW		
-
-let catListHolder = document.getElementById('catList');
-catListHolder.innerHTML = catsName.join(" ");
-
-let box = document.getElementById('catHolder');
