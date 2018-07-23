@@ -6,19 +6,13 @@ header {
 	font-size: 3em;
 }
 
-button {
-	align-self: center;
-	width: 250px;
-	height: 100px;
-	background-color: green;
-	color: white;
-	font-size: 2em;
+row {
+	width: 100%;
+	justify-content: center;
 }
 
 .show{
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	display: block;
 }
 
 .hidden {
@@ -35,4 +29,22 @@ button {
 .clickCat > img {
 	width: 200px;
 	padding: 5px;
+}
+
+#catList {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 33%;
+}
+
+#catHolder {
+	width: 66%;
+}
+
+.catNameList {
+	border: 1px solid black;
+	border-radius: 10px;
+	background-color: grey;
+	margin: 10px;
 }
