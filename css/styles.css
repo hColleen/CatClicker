@@ -6,11 +6,6 @@ header {
 	font-size: 3em;
 }
 
-row {
-	width: 100%;
-	display: block;
-}
-
 .hidden {
 	display: none;
 }
@@ -19,12 +14,10 @@ row {
 	border: 1px solid black;
 	border-radius: 10px;
 	margin: auto;
-	width: 250px;
 }
 
 
 .clickCat > img {
-	width: 200px;
 	padding: 5px;
 }
 
@@ -44,4 +37,9 @@ row {
 	background-color: grey;
 	margin: 10px;
 	width: 20vw;
+}
+
+#adminPanel {
+	position: fixed;
+	top: 700px;
 }
