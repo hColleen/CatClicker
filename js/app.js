@@ -67,6 +67,8 @@ function createCat() {
 
 createCat();
 
+//VIEW	
+
 //cat HTML created	
 for (var i = 0; i < catsDisplay.length; i++) {
     cat = catsDisplay[i];
@@ -80,9 +82,7 @@ for (let i = 0; i < catsDisplay.length; i++) {
     catName = catsDisplay[i].name;
     let catNameHTML = `<div class = "catNameList"><h2>${catName}</h2></div>`;
     catsName.push(catNameHTML);
-}
-
-//VIEW		
+}	
 
 let catListHolder = document.getElementById('catList');
 catListHolder.innerHTML = catsName.join(" ");
