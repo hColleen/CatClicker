@@ -72,7 +72,7 @@ createCat();
 //cat HTML created	
 for (var i = 0; i < catsDisplay.length; i++) {
     cat = catsDisplay[i];
-    let catInfo = `<div class = 'clickCat hidden'><h3>${cat.name}</h3><img src = ${cat.image} id = "clickHere" /><p class = "holderText">0 clicks</p></div>`;
+    let catInfo = `<div class = 'clickCat hidden' id = '${cat.num}'><h3>${cat.name}</h3><img src = ${cat.image} id = "clickHere" /><p class = "holderText">0 clicks</p></div>`;
     catsHTML.push(catInfo);
 }
 
@@ -82,7 +82,7 @@ for (let i = 0; i < catsDisplay.length; i++) {
     catName = catsDisplay[i].name;
     let catNameHTML = `<div class = "catNameList"><h2>${catName}</h2></div>`;
     catsName.push(catNameHTML);
-}	
+}
 
 let catListHolder = document.getElementById('catList');
 catListHolder.innerHTML = catsName.join(" ");
@@ -90,41 +90,74 @@ catListHolder.innerHTML = catsName.join(" ");
 let box = document.getElementById('catHolder');
 box.innerHTML = catsHTML.join(" ");
 
+let adminButton = document.getElementById('adminButton')
+  , adminInput = document.getElementById('adminInput')
+  , catNameChange = document.getElementById('catNameChange')
+  , catPicChange = document.getElementById('picChange')
+  , catClickChange = document.getElementById('countChange');
 
 //OCTOPUS
 
 //add event listener to images and update number of clicks	
-for (let i = 0; i < catsHTML.length; i ++){
-	let pics = box.getElementsByTagName("img"),
-		pic = pics[i],
-		clickCat = document.getElementsByClassName('clickCat'),
-		countText = clickCat[i],
-		catText = document.createElement('p'),
-		holderText = document.getElementsByClassName('holderText'),
-		tempText = holderText[i],
-		count = 0;
-	countText.appendChild(catText);
-	pic.addEventListener('click', function(e){
-		count += 1;
-		tempText.classList.add('hidden');
-		catText.textContent = count + " clicks";
-	});
-};
+for (let i = 0; i < catsHTML.length; i++) {
+    let pics = box.getElementsByTagName("img")
+      , pic = pics[i]
+      , clickCat = document.getElementsByClassName('clickCat')
+      , countText = clickCat[i]
+      , catText = document.createElement('p')
+      , holderText = document.getElementsByClassName('holderText')
+      , tempText = holderText[i]
+      , count = 0;
+    countText.appendChild(catText);
+    pic.addEventListener('click', function(e) {
+        count += 1;
+        tempText.classList.add('hidden');
+        catText.textContent = count + " clicks";
+    });
+}
 
 //add click listener to cat names to display one cat and count
 
-for (let i = 0; i < catsName.length; i ++){
-	let names = catListHolder.getElementsByTagName('div'),
-		nameLink = names[i],
-		catsList = document.getElementsByClassName('clickCat'),
-		displayCat = catsList[i]
-		displayedCat = [];
-	nameLink.addEventListener('click', function(){
-		displayCat.classList.remove('hidden');
-		displayedCat.push(displayCat);
-		if(displayedCat.length == 2){
-			displayedCat[0].classList.add('hidden');
-			displayedCat.splice(0, 1);
-		}
-	});
-};
+let displayedCat = []
+
+for (let i = 0; i < catsName.length; i++) {
+    let names = catListHolder.getElementsByTagName('div')
+      , nameLink = names[i]
+      , catsList = document.getElementsByClassName('clickCat')
+      , displayCat = catsList[i];
+    nameLink.addEventListener('click', function() {
+        displayCat.classList.remove('hidden');
+        displayCat.classList.add('show');
+        displayedCat.push(displayCat);
+        if (displayedCat.length == 2) {
+            displayedCat[0].classList.remove('show');
+            displayedCat[0].classList.add('hidden');
+            displayedCat.splice(0, 1);
+        }
+    });
+}
+
+//add listener to admin button and show input area
+adminButton.addEventListener('click', function() {
+    adminInput.classList.remove('hidden');
+    adminButton.classList.add('hidden');
+});
+
+//clear entries to admin form and hide it
+function cancel() {
+    catNameChange.value = '';
+    catPicChange.value = '';
+    catClickChange.value = '0';
+    adminButton.classList.remove('hidden');
+    adminInput.classList.add('hidden');
+}
+
+//take entries from form and update display
+function submit(e) {
+    e.preventDefault();
+    let nameChange = catNameChange.value
+      , changePic = catPicChange.value
+      , clickChange = catClickChange.value
+      , currentCat = document.getElementsByClassName('show')
+      , currentCatHTML = currentCat[0];
+}
