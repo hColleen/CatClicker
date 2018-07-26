@@ -153,8 +153,7 @@ function cancel() {
 }
 
 //take entries from form and update display
-function submit(e) {
-    e.preventDefault();
+function update() {
     let nameChange = catNameChange.value
       , changePic = catPicChange.value
       , clickChange = catClickChange.value
