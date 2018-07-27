@@ -45,10 +45,31 @@ let Cat = function(num, name, image) {
     this.image = image;
 };
 
-//select random cats from array	
-function getRandomCat(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
+//select random cats from array, preventing repeats (tutorial from here: https://inteist.com/javascript-generate-pseudo-random-set/ )
+
+function numArr(limit){
+	list = [];
+	for (let i = 0; i < limit; i ++){
+		list.push(i);
+	}
+	return list;
 }
+
+function shuffle(array){
+	let i = array.length,
+		j = 0,
+		temp;
+	while (i --){
+		j = Math.floor(Math.random() * (i + 1))
+		temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+	return array;
+}
+
+
+let getRandomCat = shuffle(numArr(catArray.length));
 
 //define variables needed to create and display cat images and names
 let catsDisplay = [], cat, catsHTML = [], catCount = 5;
@@ -56,7 +77,7 @@ let catsDisplay = [], cat, catsHTML = [], catCount = 5;
 //create cats		
 function createCat() {
     for (let i = 0; i < catCount; i++) {
-        let cat = getRandomCat(catArray);
+        let cat = catArray[getRandomCat[i]];
         num = i;
         name = cat.name;
         image = cat.image;
@@ -158,5 +179,24 @@ function update() {
       , changePic = catPicChange.value
       , clickChange = catClickChange.value
       , currentCat = document.getElementsByClassName('show')
-      , currentCatHTML = currentCat[0];
+      , currentCatHTML = currentCat.item(0).innerHTML
+	  , text = currentCatHTML
+	  , newArr = text.split(">")
+	  , text1 = newArr.toString()
+	  , secArr = text1.split("<")
+	  , text2 = secArr.toString()
+	  ,	finArr = text2.split(",")
+	  , elementArr = new Array();
+	function cleanArray(actual) {
+		for (let i = 0; i < actual.length; i++) {
+			if (actual[i]) {
+			elementArr.push(actual[i]);
+			}
+		}
+		return elementArr;
+	}
+	cleanArray(finArr);
+	let currentCatName = elementArr[1];
+	console.log(currentCatName);
+	
 }
