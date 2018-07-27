@@ -162,23 +162,7 @@ for (let i = 0; i < catsName.length; i++) {
 adminButton.addEventListener('click', function() {
     adminInput.classList.remove('hidden');
     adminButton.classList.add('hidden');
-});
-
-//clear entries to admin form and hide it
-function cancel() {
-    catNameChange.value = '';
-    catPicChange.value = '';
-    catClickChange.value = '0';
-    adminButton.classList.remove('hidden');
-    adminInput.classList.add('hidden');
-}
-
-//take entries from form and update display
-function update() {
-    let nameChange = catNameChange.value
-      , changePic = catPicChange.value
-      , clickChange = catClickChange.value
-      , currentCat = document.getElementsByClassName('show')
+	  let currentCat = document.getElementsByClassName('show')
       , currentCatHTML = currentCat.item(0).innerHTML
 	  , text = currentCatHTML
 	  , newArr = text.split(">")
@@ -196,7 +180,31 @@ function update() {
 		return elementArr;
 	}
 	cleanArray(finArr);
-	let currentCatName = elementArr[1];
-	console.log(currentCatName);
+	let currentCatName = elementArr[1]
+		, curPic = elementArr[3]
+		, text3 = curPic.toString()
+		, picArr = text3.split(" ")
+		, pic2Arr = picArr.slice(1, 2)
+		, text4 = pic2Arr.toString()
+		, picArr2 = text4.split("");
+		picArr2.pop();
+		let pic2Arr2 = picArr2.slice(12),
+		imageName = pic2Arr2.join("");
+	catNameChange.value = currentCatName;
+	picChange.value = imageName;
+});
+
+//clear entries to admin form and hide it
+function cancel() {
+    catNameChange.value = '';
+    catPicChange.value = '';
+    catClickChange.value = '0';
+    adminButton.classList.remove('hidden');
+    adminInput.classList.add('hidden');
+}
+
+//take entries from form and update display
+function update() {
+
 	
 }
