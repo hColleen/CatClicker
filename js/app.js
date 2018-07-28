@@ -159,14 +159,17 @@ for (let i = 0; i < catsName.length; i++) {
 }
 
 //add listener to admin button and show input area
+
+let catIDText;
+
 adminButton.addEventListener('click', function() {
     adminInput.classList.remove('hidden');
     adminButton.classList.add('hidden');
 	  let currentCat = document.getElementsByClassName('show')
       , currentCatHTML = currentCat.item(0).innerHTML
-	  , catIdNumArr = currentCatHTML.split("")
-	  , catIDText = catIdNumArr.splice(8,1)
-	  , currentCatName = catsDisplay[catIDText].name
+	  , catIdNumArr = currentCatHTML.split("");
+	  catIDText = catIdNumArr.splice(8,1);
+	  let currentCatName = catsDisplay[catIDText].name
 	  , currentCatImage = catsDisplay[catIDText].image;
 	  catNameChange.value = currentCatName;
 	  catPicChange.value = currentCatImage;
