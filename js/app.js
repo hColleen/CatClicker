@@ -93,7 +93,7 @@ createCat();
 //cat HTML created	
 for (var i = 0; i < catsDisplay.length; i++) {
     cat = catsDisplay[i];
-    let catInfo = `<div class = 'clickCat hidden' id = '${cat.num}'><h3>${cat.name}</h3><img src = ${cat.image} id = "clickHere" /><p class = "holderText">0 clicks</p></div>`;
+    let catInfo = `<div class = 'clickCat hidden'><h3 id = '${cat.num}'>${cat.name}</h3><img src = ${cat.image} id = "clickHere" /><p class = "holderText">0 clicks</p></div>`;
     catsHTML.push(catInfo);
 }
 
@@ -164,34 +164,12 @@ adminButton.addEventListener('click', function() {
     adminButton.classList.add('hidden');
 	  let currentCat = document.getElementsByClassName('show')
       , currentCatHTML = currentCat.item(0).innerHTML
-	  , text = currentCatHTML
-	  , newArr = text.split(">")
-	  , text1 = newArr.toString()
-	  , secArr = text1.split("<")
-	  , text2 = secArr.toString()
-	  ,	finArr = text2.split(",")
-	  , elementArr = new Array();
-	function cleanArray(actual) {
-		for (let i = 0; i < actual.length; i++) {
-			if (actual[i]) {
-			elementArr.push(actual[i]);
-			}
-		}
-		return elementArr;
-	}
-	cleanArray(finArr);
-	let currentCatName = elementArr[1]
-		, curPic = elementArr[3]
-		, text3 = curPic.toString()
-		, picArr = text3.split(" ")
-		, pic2Arr = picArr.slice(1, 2)
-		, text4 = pic2Arr.toString()
-		, picArr2 = text4.split("");
-		picArr2.pop();
-		let pic2Arr2 = picArr2.slice(12),
-		imageName = pic2Arr2.join("");
-	catNameChange.value = currentCatName;
-	picChange.value = imageName;
+	  , catIdNumArr = currentCatHTML.split("")
+	  , catIDText = catIdNumArr.splice(8,1)
+	  , currentCatName = catsDisplay[catIDText].name
+	  , currentCatImage = catsDisplay[catIDText].image;
+	  catNameChange.value = currentCatName;
+	  catPicChange.value = currentCatImage;
 });
 
 //clear entries to admin form and hide it
