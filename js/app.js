@@ -43,6 +43,7 @@ let Cat = function(num, name, image) {
     this.num = num;
     this.name = name;
     this.image = image;
+	this.count = 0;
 };
 
 //select random cats from array, preventing repeats (tutorial from here: https://inteist.com/javascript-generate-pseudo-random-set/ )
@@ -93,7 +94,7 @@ createCat();
 //cat HTML created	
 for (var i = 0; i < catsDisplay.length; i++) {
     cat = catsDisplay[i];
-    let catInfo = `<div class = 'clickCat hidden'><h3 id = '${cat.num}'>${cat.name}</h3><img src = ${cat.image} id = "clickHere" /><p class = "holderText">0 clicks</p></div>`;
+    let catInfo = `<div class = 'clickCat hidden'><h3 id = '${cat.num}'>${cat.name}</h3><img src = ${cat.image} id = "clickHere" /><p>${cat.count} clicks</p></div>`;
     catsHTML.push(catInfo);
 }
 
@@ -120,19 +121,18 @@ let adminButton = document.getElementById('adminButton')
 //OCTOPUS
 
 //add event listener to images and update number of clicks	
+
 for (let i = 0; i < catsHTML.length; i++) {
     let pics = box.getElementsByTagName("img")
       , pic = pics[i]
       , clickCat = document.getElementsByClassName('clickCat')
-      , countText = clickCat[i]
-      , catText = document.createElement('p')
-      , holderText = document.getElementsByClassName('holderText')
-      , tempText = holderText[i]
-      , count = 0;
-    countText.appendChild(catText);
+      , countText = box.getElementsByTagName("p")
+      , catText = countText[i]
+	  , count;
+	  catsDisplay[i].count = count;
+	  count = 0;
     pic.addEventListener('click', function(e) {
         count += 1;
-        tempText.classList.add('hidden');
         catText.textContent = count + " clicks";
     });
 }
