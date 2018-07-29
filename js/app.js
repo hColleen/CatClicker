@@ -45,7 +45,9 @@ let Cat = function(num, name, image) {
     this.image = image;
 	this.count = 0;
 };
-
+Cat.prototype.countUpdate = function(){
+	this.count += 1;
+}
 //select random cats from array, preventing repeats (tutorial from here: https://inteist.com/javascript-generate-pseudo-random-set/ )
 
 function numArr(limit){
@@ -124,7 +126,7 @@ for (let i = 0; i < catsHTML.length; i++) {
       , countText = box.getElementsByTagName("p")
       , catText = countText[i];
     pic.addEventListener('click', function(e) {
-        catsDisplay[i].count += 1;
+        catsDisplay[i].countUpdate();
 		catText.textContent =  catsDisplay[i].count + " clicks";
     });
 }
@@ -179,21 +181,34 @@ adminButton.addEventListener('click', function() {
 });
 
 //clear entries to admin form and hide it
-function cancel() {
+let cancelButton = document.getElementById("cancel");
+cancelButton.addEventListener('click', function () {
     catNameChange.value = '';
     catPicChange.value = '';
     catClickChange.value = '0';
     adminButton.classList.remove('hidden');
     adminInput.classList.add('hidden');
-}
+});
 
 //take entries from form and update display
-function update() {
+let updateButton = document.getElementById('update');
+updateButton.addEventListener('click', function () {
 	catsDisplay[catIDText].name = catNameChange.value;
 	catsDisplay[catIDText].image = catPicChange.value;
-	catsDisplay[catIDText].count = catClickChange.value;
+	let countChangeNum = parseFloat( catClickChange.value);
+	catsDisplay[catIDText].count = countChangeNum;
 	let catName = document.getElementsByClassName("catNameList");
 	catName[catIDText].innerHTML = `<h2>${catsDisplay[catIDText].name}</h2>`;
+	let catHTML = document.getElementsByClassName("clickCat");
+	catHTML[catIDText].innerHTML = `<div class = "clickCat show"><h3>${catsDisplay[catIDText].name}</h3><img src = ${catsDisplay[catIDText].image} id ="clickHere" /><p>${catsDisplay[catIDText].count} clicks</p></div>`;
+	let pics = box.getElementsByTagName("img")
+	, pic = pics[catIDText]
+	, countText = box.getElementsByTagName("p")
+	, catText = countText[catIDText];
+	pic.addEventListener('click', function() {
+        catsDisplay[catIDText].countUpdate();
+		catText.textContent =  catsDisplay[catIDText].count + " clicks";
+    });
 	adminButton.classList.remove('hidden');
 	adminInput.classList.add('hidden');
-}
+});
