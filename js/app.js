@@ -112,11 +112,6 @@ catListHolder.innerHTML = catsName.join(" ");
 let box = document.getElementById('catHolder');
 box.innerHTML = catsHTML.join(" ");
 
-let adminButton = document.getElementById('adminButton')
-  , adminInput = document.getElementById('adminInput')
-  , catNameChange = document.getElementById('catNameChange')
-  , catPicChange = document.getElementById('picChange')
-  , catClickChange = document.getElementById('countChange');
 
 //OCTOPUS
 
@@ -127,13 +122,10 @@ for (let i = 0; i < catsHTML.length; i++) {
       , pic = pics[i]
       , clickCat = document.getElementsByClassName('clickCat')
       , countText = box.getElementsByTagName("p")
-      , catText = countText[i]
-	  , count;
-	  catsDisplay[i].count = count;
-	  count = 0;
+      , catText = countText[i];
     pic.addEventListener('click', function(e) {
-        count += 1;
-        catText.textContent = count + " clicks";
+        catsDisplay[i].count += 1;
+		catText.textContent =  catsDisplay[i].count + " clicks";
     });
 }
 
@@ -160,7 +152,12 @@ for (let i = 0; i < catsName.length; i++) {
 
 //add listener to admin button and show input area
 
-let catIDText;
+let catIDText
+  , adminButton = document.getElementById('adminButton')
+  , adminInput = document.getElementById('adminInput')
+  , catNameChange = document.getElementById('catNameChange')
+  , catPicChange = document.getElementById('picChange')
+  , catClickChange = document.getElementById('countChange');
 
 adminButton.addEventListener('click', function() {
     adminInput.classList.remove('hidden');
@@ -170,9 +167,11 @@ adminButton.addEventListener('click', function() {
 	  , catIdNumArr = currentCatHTML.split("");
 	  catIDText = catIdNumArr.splice(8,1);
 	  let currentCatName = catsDisplay[catIDText].name
-	  , currentCatImage = catsDisplay[catIDText].image;
+	  , currentCatImage = catsDisplay[catIDText].image
+	  , currentCatCount = catsDisplay[catIDText].count;
 	  catNameChange.value = currentCatName;
 	  catPicChange.value = currentCatImage;
+	  catClickChange.value = currentCatCount;
 });
 
 //clear entries to admin form and hide it
