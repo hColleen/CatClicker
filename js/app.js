@@ -185,6 +185,9 @@ function cancel() {
 
 //take entries from form and update display
 function update() {
-
-	
+	catsDisplay[catIDText].name = catNameChange.value;
+	catsDisplay[catIDText].image = catPicChange.value;
+	catsDisplay[catIDText].count = catClickChange.value;
+	adminButton.classList.remove('hidden');
+	adminInput.classList.add('hidden');
 }
