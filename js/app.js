@@ -160,9 +160,12 @@ let catIDText
   , catClickChange = document.getElementById('countChange');
 
 adminButton.addEventListener('click', function() {
+	if (displayedCat.length !== 1){
+		alert("Select Cat");
+	} else {
     adminInput.classList.remove('hidden');
     adminButton.classList.add('hidden');
-	  let currentCat = document.getElementsByClassName('show')
+		let currentCat = document.getElementsByClassName('show')
       , currentCatHTML = currentCat.item(0).innerHTML
 	  , catIdNumArr = currentCatHTML.split("");
 	  catIDText = catIdNumArr.splice(8,1);
@@ -172,6 +175,7 @@ adminButton.addEventListener('click', function() {
 	  catNameChange.value = currentCatName;
 	  catPicChange.value = currentCatImage;
 	  catClickChange.value = currentCatCount;
+	}
 });
 
 //clear entries to admin form and hide it
