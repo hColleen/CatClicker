@@ -1,45 +1,48 @@
 body {
-	text-align: center;
+    text-align: center;
 }
 
 header {
-	font-size: 3em;
+    font-size: 3em;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
 .clickCat {
-	border: 1px solid black;
-	border-radius: 10px;
-	margin: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: auto;
 }
 
-
 .clickCat > img {
-	padding: 5px;
+    padding: 5px;
 }
 
 #catList {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #catHolder {
-	width: 66%;
+	position: fixed;
+    width: 66%;
+	margin-left: 25%;
+	top: 75px;
 }
 
 .catNameList {
-	border: 1px solid black;
-	border-radius: 10px;
-	background-color: grey;
-	margin: 10px;
-	width: 20vw;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: grey;
+    margin: 10px;
+    width: 20vw;
+	cursor: pointer;
 }
 
 #adminPanel {
-	position: fixed;
-	top: 700px;
+    position: fixed;
+    top: 510px;
 }

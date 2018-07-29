@@ -192,6 +192,8 @@ function update() {
 	catsDisplay[catIDText].name = catNameChange.value;
 	catsDisplay[catIDText].image = catPicChange.value;
 	catsDisplay[catIDText].count = catClickChange.value;
+	let catName = document.getElementsByClassName("catNameList");
+	catName[catIDText].innerHTML = `<h2>${catsDisplay[catIDText].name}</h2>`;
 	adminButton.classList.remove('hidden');
 	adminInput.classList.add('hidden');
 }
