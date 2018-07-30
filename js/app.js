@@ -200,7 +200,7 @@ updateButton.addEventListener('click', function () {
 	let catName = document.getElementsByClassName("catNameList");
 	catName[catIDText].innerHTML = `<h2>${catsDisplay[catIDText].name}</h2>`;
 	let catHTML = document.getElementsByClassName("clickCat");
-	catHTML[catIDText].innerHTML = `<div class = "clickCat show"><h3>${catsDisplay[catIDText].name}</h3><img src = ${catsDisplay[catIDText].image} id ="clickHere" /><p>${catsDisplay[catIDText].count} clicks</p></div>`;
+	catHTML[catIDText].innerHTML = `<div class = "clickCat show"><h3 id = "${catsDisplay[catIDText].num}">${catsDisplay[catIDText].name}</h3><img src = ${catsDisplay[catIDText].image} id ="clickHere" /><p>${catsDisplay[catIDText].count} clicks</p></div>`;
 	let pics = box.getElementsByTagName("img")
 	, pic = pics[catIDText]
 	, countText = box.getElementsByTagName("p")
