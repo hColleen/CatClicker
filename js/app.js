@@ -154,23 +154,25 @@ for (let i = 0; i < catsName.length; i++) {
 
 //add listener to admin button and show input area
 
-let catIDText
+let catIDTextArr = []
+  , catIDText
+  , currentCat = document.getElementsByClassName('show')
   , adminButton = document.getElementById('adminButton')
   , adminInput = document.getElementById('adminInput')
   , catNameChange = document.getElementById('catNameChange')
   , catPicChange = document.getElementById('picChange')
   , catClickChange = document.getElementById('countChange');
-
-adminButton.addEventListener('click', function() {
+  
+checkCat = function (){
 	if (displayedCat.length !== 1){
 		alert("Select Cat");
 	} else {
     adminInput.classList.remove('hidden');
     adminButton.classList.add('hidden');
-		let currentCat = document.getElementsByClassName('show')
-      , currentCatHTML = currentCat.item(0).innerHTML
+	let currentCatHTML = currentCat.item(0).innerHTML
 	  , catIdNumArr = currentCatHTML.split("");
-	  catIDText = catIdNumArr.splice(8,1);
+	  catIDTextArr.push(catIdNumArr.splice(8,1));
+	  catIDText = catIDTextArr[0];
 	  let currentCatName = catsDisplay[catIDText].name
 	  , currentCatImage = catsDisplay[catIDText].image
 	  , currentCatCount = catsDisplay[catIDText].count;
@@ -178,14 +180,15 @@ adminButton.addEventListener('click', function() {
 	  catPicChange.value = currentCatImage;
 	  catClickChange.value = currentCatCount;
 	}
-});
+};
+  
+  
+adminButton.addEventListener('click', checkCat);
+
 
 //clear entries to admin form and hide it
 let cancelButton = document.getElementById("cancel");
 cancelButton.addEventListener('click', function () {
-    catNameChange.value = '';
-    catPicChange.value = '';
-    catClickChange.value = '0';
     adminButton.classList.remove('hidden');
     adminInput.classList.add('hidden');
 });
@@ -209,6 +212,8 @@ updateButton.addEventListener('click', function () {
         catsDisplay[catIDText].countUpdate();
 		catText.textContent =  catsDisplay[catIDText].count + " clicks";
     });
+	catIDTextArr.splice(0, 1);
+	currentCat[0].remove;
 	adminButton.classList.remove('hidden');
 	adminInput.classList.add('hidden');
 });
