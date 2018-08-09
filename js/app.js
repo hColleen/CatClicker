@@ -198,7 +198,7 @@ let updateButton = document.getElementById('update');
 updateButton.addEventListener('click', function () {
 	catsDisplay[catIDText].name = catNameChange.value;
 	catsDisplay[catIDText].image = catPicChange.value;
-	let countChangeNum = parseFloat( catClickChange.value);
+	let countChangeNum = parseFloat(catClickChange.value);
 	catsDisplay[catIDText].count = countChangeNum;
 	let catName = document.getElementsByClassName("catNameList");
 	catName[catIDText].innerHTML = `<h2>${catsDisplay[catIDText].name}</h2>`;
