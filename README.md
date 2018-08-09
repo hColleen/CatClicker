@@ -6,7 +6,7 @@ This project is part of the Udacity Front-End Web Development Nanodegree program
 - Single cat clicker: 7795723
 - Two cat clicker: 2d9fede
 - Five cats clicker: 3b691df
-- Final project: bb4b8f6
+- Final project: last commit
 ## To use
 ### [Live Version](https://hcolleen.github.io/CatClicker/).
 ### To use offline
